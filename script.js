@@ -1,7 +1,7 @@
 const tagsEl = document.getElementById('tags')
 const textarea = document.getElementById('textarea')
 
-textarea.focus()
+textarea.focus()//This makes the cursor automatically start inside the textbox 
 
 textarea.addEventListener('keyup', (e) => {
     createTags(e.target.value)
@@ -16,7 +16,8 @@ textarea.addEventListener('keyup', (e) => {
 })
 
 function createTags(input) {
-    const tags = input.split(',').filter(tag => tag.trim() !== '').map(tag => tag.trim())
+    const tags = input.split(',').filter(tag => tag.trim() !== '').map(tag => tag.trim())//filter(tag => tag.trim() !== ''): This removes any empty tags (in case there are extra commas).
+    //map(tag => tag.trim()): This trims any excess spaces from each tag.
     
     tagsEl.innerHTML = ''
 
@@ -24,7 +25,12 @@ function createTags(input) {
         const tagEl = document.createElement('span')
         tagEl.classList.add('tag')
         tagEl.innerText = tag
-        tagsEl.appendChild(tagEl)
+
+            tagsEl.appendChild(tagEl)//The tag is appended to tagsEl for display.
+             // Remove tag 
+             tagEl.addEventListener('click', () => {
+                tagEl.remove()
+            })
     })
 }
 
